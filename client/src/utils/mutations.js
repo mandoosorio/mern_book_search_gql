@@ -1,5 +1,3 @@
-//Step 26: Add mutations
-
 import { gql } from '@apollo/client';
 
 export const LOGIN_USER = gql`

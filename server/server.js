@@ -4,6 +4,7 @@ const express = require('express');
 const { ApolloServer } = require("apollo-server-express");
 
 const path = require('path');
+const { authMiddleware } = require('./utils/auth');
 
 // Step 2: require your type defs and resolvers from the schemas folder
 const { typeDefs, resolvers } = require("./schemas");
@@ -20,7 +21,7 @@ const PORT = process.env.PORT || 3001;
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  context: atuhMiddleware
+  context: authMiddleware
 });
 
 // Step 5: apply middleware to app

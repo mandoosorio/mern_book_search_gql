@@ -9,7 +9,7 @@ const resolvers = {
     Query: {
         me: async (parent, args, context) => {
             if (context.user) {
-                const userData = await User.fineOne({ _id: context.user._id }).select("-__v - password");
+                const userData = await User.fineOne({ _id: context.user._id }).select("-__v -password");
                 return userData;
             }
             throw new AuthenticationError("Not logged in");
@@ -40,7 +40,7 @@ const resolvers = {
             return { token, user };
         },
 
-        saveBook: async (parent, { bookId }, context) => {
+        saveBook: async (parent, { bookData }, context) => {
             if(context.user) {
                 const updatedUser = await User.findByIdAndUpdate(
                     { _id: context.user._id },
